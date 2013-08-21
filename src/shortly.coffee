@@ -6,7 +6,7 @@ $ ->
     chk % 10
 
   $('#save-button').click () ->
-    input = $('#input-field').get(0).value
+    input = Base64.utob($('#input-field').get(0).value)
     deflated = RawDeflate.deflate input
     base64 = Base64.toBase64 deflated
     check = checksum base64
@@ -22,4 +22,4 @@ $ ->
     else
       deflated = Base64.fromBase64 base64
       input = RawDeflate.inflate deflated
-      $('#input-field').get(0).value = input
+      $('#input-field').get(0).value = Base64.btou(input)
